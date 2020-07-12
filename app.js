@@ -38,6 +38,52 @@ db.collection('cafes').get().then((snapshot)=>{
         // doing the abpve only show us the reference to the data from firbase 
         // to get data we add the .data() function to docs
         // console.log(doc.data());
+    // renderCafe(doc);//this pastes the list on the ui
+    });
+});
+
+// //Getting data in a collection wiht condition
+// where(field to check,how we want evaluate it,what want the conditio to be )
+// how we want to evaluate it= can have different paramete such as <,>,==
+// > this one to seach maybe with first alphabet e.g >n(i.e alphabet greater n and n iclusive should be selected)
+db.collection('cafes').where('city','==','mario land').get().then((snapshot)=>{
+    console.log(snapshot.docs);
+    // to get data printed out individually for firebase we dothe following 
+    snapshot.docs.forEach(doc => {
+        // console.log(doc);
+        // doing the abpve only show us the reference to the data from firbase 
+        // to get data we add the .data() function to docs
+        // console.log(doc.data());
+        // renderCafe(doc);
+    });
+});
+
+// //Getting data by Ordering 
+// order data from firebase with keyword of ordering 
+db.collection('cafes').orderBy("name").get().then((snapshot)=>{
+    console.log(snapshot.docs);
+    // to get data printed out individually for firebase we dothe following 
+    snapshot.docs.forEach(doc => {
+        // console.log(doc);
+        // doing the abpve only show us the reference to the data from firbase 
+        // to get data we add the .data() function to docs
+        // console.log(doc.data());
+        // renderCafe(doc);
+    });
+});
+
+// ordering data with condition
+// buh you ave to create a query index in the firebase consle
+// goto firebase console and got to the index part to set up query condition
+
+db.collection('cafes').where('city','==','ace city').orderBy("name").get().then((snapshot)=>{
+    console.log(snapshot.docs);
+    // to get data printed out individually for firebase we dothe following 
+    snapshot.docs.forEach(doc => {
+        // console.log(doc);
+        // doing the abpve only show us the reference to the data from firbase 
+        // to get data we add the .data() function to docs
+        // console.log(doc.data());
         renderCafe(doc);
     });
 });
