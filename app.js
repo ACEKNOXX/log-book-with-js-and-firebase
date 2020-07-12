@@ -119,3 +119,7 @@ db.collection('cafes').orderBy('name').onSnapshot(snapshot =>{
 
     });
 } );
+
+// updating data on firebase
+// db.collection('cafes').doc(user.id).update({name:"wario world"});
+// db.collection('cafes').doc(user.id).set({name:"wario world"}); //this one totaly overrides the document being referenced if one
