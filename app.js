@@ -16,7 +16,14 @@ function renderCafe(doc){
     li.appendChild(name);
     li.appendChild(city);
     li.appendChild(cross);
-    
+
+    // deleting data 
+    cross.addEventListener('click',(e)=>{
+        e.stopPropagation();//this stop evenets from bubblin up on the dom
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('cafes').doc(id).delete();
+    });
+
     cafeList.appendChild(li);
 }
 
