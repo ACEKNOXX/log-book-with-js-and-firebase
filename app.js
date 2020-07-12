@@ -84,7 +84,7 @@ db.collection('cafes').where('city','==','ace city').orderBy("name").get().then(
         // doing the abpve only show us the reference to the data from firbase 
         // to get data we add the .data() function to docs
         // console.log(doc.data());
-        renderCafe(doc);
+    // renderCafe(doc);
     });
 });
 
@@ -103,3 +103,19 @@ form.addEventListener('submit',(e)=>{
     form.city.value='';
 
 });
+
+
+// Getting data in real time from firebase
+db.collection('cafes').orderBy('name').onSnapshot(snapshot =>{
+    let changes=snapshot.docChanges();
+    changes.forEach((change)=>{
+        // console.log(change.doc.data());
+        if (change.type=='added') {
+            renderCafe(change.doc);
+        } else if(change.type=='removed') {
+            let li  = cafeList.querySelector('[data-id='+change.doc.id+']');
+            cafeList.removeChild(li);
+        }
+
+    });
+} );
